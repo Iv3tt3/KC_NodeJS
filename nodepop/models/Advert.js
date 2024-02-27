@@ -4,21 +4,24 @@ const mongoose = require('mongoose');
 const advertSchema = mongoose.Schema({
     name: { 
         type: String, 
-        required: true },
-    type: {
-        type: String, 
-        required: true, 
-        enum: ['Sell', 'Find']},
+        //required: true 
+        },
+    sell: {
+        type: Boolean, 
+        //required: true 
+        },
     price: { 
         type: Number, 
-        required: true },
+        //required: true 
+        },
     photo: {
         type: String, 
-        required: true},
+        //required: true
+        },
     tags: {
         type: String, 
         enum: ['Work', 'Lifestyle', 'Motor', 'House', 'Clothes', 'Sports', 'Tech' ,'Other']},
-    });
+});
 
 // create advert model
 const Advert = mongoose.model('Advert', advertSchema)

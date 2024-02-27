@@ -1,0 +1,16 @@
+[ 
+    {
+    "name": "Bike",
+    "sell": true,
+    "price": 200.15,
+    "foto": "bike.jpg",
+    "tags": "Lifestyle"
+    },
+    {
+    "name": "Sofa",
+    "sell": true,
+    "price": 10.00,
+    "foto": "sofa.jpg",
+    "tags": "House"
+    }
+]
