@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 //Connect to database
-mongoose.connect('mongodb://127.0.0.1/nodepop'); 
+mongoose.connect('mongodb://127.0.0.1:27017/nodepop'); 
 
 //Control error event
 mongoose.connection.on('error', err => {
@@ -13,3 +13,6 @@ mongoose.connection.on('error', err => {
 mongoose.connection.once('open', () => {
     console.log('Conectado a MongoDB en', mongoose.connection.name);
 });
+
+//(Optional) Export model
+module.exports = mongoose.connection;
