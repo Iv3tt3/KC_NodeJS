@@ -56,6 +56,14 @@ advertSchema.pre('validate', function(next) {
 });
 
 
+// Used in API filters (adverts.js)
+advertSchema.statics.list = function(filter, skip, limit){
+    const query = Advert.find(filter);
+    query.skip(skip);
+    query.limit(limit);
+    return query.exec();
+}
+
 // create advert model
 const Advert = mongoose.model('Advert', advertSchema)
 
