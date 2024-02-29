@@ -5,7 +5,6 @@ const Advert = require('../../models/Advert');
 /* GET listing. */
 router.get('/', async function(req, res, next) {
     try {
-
         //Filter 
             //GET /api/adverts?name=Sofa
             const filterByName = req.query.name;
@@ -62,6 +61,27 @@ router.get('/', async function(req, res, next) {
     } catch (error){
         next(error)
     }
+});
+
+// Return list of tags used in the adverts
+router.get('/tags', async (req, res, next) => {
+  try {
+
+    // create a Set to save tags with no duplicity
+    const listTags = new Set();
+
+    // select tags from adverts
+    const adverts = await Advert.find().select('tags');
+    // add tags to listTags
+    adverts.forEach(ad => {
+      ad.tags.forEach(tag => listTags.add(tag));
+    });
+    // return JSON
+    res.json({tags: Array.from(listTags)})
+
+  } catch{
+    next(error);
+  }
 });
 
 // Return ad by ID   GET /api/adverts/<_id>
