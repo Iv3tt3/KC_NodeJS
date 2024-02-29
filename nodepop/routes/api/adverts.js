@@ -84,3 +84,21 @@ router.put('/:id', async (req, res, next) => {
       next(error);
     }
 });
+
+// Create new advert  POST /api/adverts (body)
+router.post('/', async (req, res, next) => {
+    try {
+      const data = req.body;
+  
+      // create a new advert
+      const advert = new Advert(data);
+  
+      // save to db
+      const savedAdvert = await advert.save();
+  
+      res.json({ result: savedAdvert });
+  
+    } catch (error) {
+      next(error);
+    }
+  });
