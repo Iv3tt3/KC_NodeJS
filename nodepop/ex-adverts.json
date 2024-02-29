@@ -11,6 +11,27 @@
     "sell": false,
     "price": 18,
     "photo": "sofa.png",
-    "tags": "house"
+    "tags": ["lifeStyle", "house"]
+    },
+    {
+    "name": "Mac",
+    "sell": true,
+    "price": 1800,
+    "photo": "macbook.png",
+    "tags": "tech"
+    },
+    {
+    "name": "Sweater",
+    "sell": true,
+    "price": 50.01,
+    "photo": "sweater.jpeg",
+    "tags": ["clothes", "lifeStyle"]
+    },
+    {
+    "name": "Sofa",
+    "sell": false,
+    "price": 150,
+    "photo": "phone.jpeg",
+    "tags": "tech"
     }
 ]
