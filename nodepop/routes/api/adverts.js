@@ -8,11 +8,21 @@ router.get('/', async function(req, res, next) {
 
         //Filters
         const filterByName = req.query.name;
+        const filterBySell = req.query.sell;
+        const filterByTags = req.query.tags;
 
         const filter = {}
 
         if (filterByName) {
-            filter.name = filterByName
+            filter.name = filterByName;
+        }
+
+        if (filterBySell) {
+            filter.sell = filterBySell;
+        }
+
+        if (filterByTags) {
+            filter.tags = filterByTags;
         }
 
         const adverts = await Advert.find(filter);
