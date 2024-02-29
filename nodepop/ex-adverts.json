@@ -3,14 +3,14 @@
     "name": "Bike",
     "sell": true,
     "price": 200.15,
-    "photo": "bike.jpg",
+    "photo": "bike.jpeg",
     "tags": ["lifeStyle", "Sports"]
     },
     {
     "name": "Sofa",
     "sell": false,
     "price": 18,
-    "photo": "sofa.jpeg",
+    "photo": "sofa.png",
     "tags": "house"
     }
 ]

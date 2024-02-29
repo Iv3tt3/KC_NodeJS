@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
+const Advert = require('../models/Advert');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
   try{
-    res.render('index', { title: 'Express' });
+
+    const adverts = await Advert.find()
+
+    res.render('index', {title: "Nodepop adverts", adverts: adverts});
   
   } catch (error){
     next(error)

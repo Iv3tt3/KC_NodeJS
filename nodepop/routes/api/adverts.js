@@ -24,7 +24,7 @@ router.get('/', async function(req, res, next) {
             const filter = {};
 
             if (filterByName) {
-                filter.name = filterByName;
+                filter.name = new RegExp('^' + filterByName, "i")
             }
 
             if (filterBySell) {
@@ -42,7 +42,13 @@ router.get('/', async function(req, res, next) {
 
             if (filterByPrice) {
                 const [minPrice, maxPrice] = filterByPrice.split('-');
-                filter.price = { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) };
+                if (minPrice && maxPrice) {
+                  filter.price = { $gte: (minPrice), $lte: (maxPrice) };
+                } else if (minPrice) {
+                    filter.price = { $gte: (minPrice) };
+                } else if (maxPrice) {
+                    filter.price = { $lte: (maxPrice) };
+                }
             }
         
         // Pagination GET api/adverts?skip=2&limit=2
