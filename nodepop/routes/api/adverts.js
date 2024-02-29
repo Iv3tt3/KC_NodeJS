@@ -55,4 +55,17 @@ router.get('/', async function(req, res, next) {
     }
 });
 
+// Return ad by ID   GET /api/adverts/<_id>
+router.get('/:id', async (req, res, next) => {
+    try {
+      const id = req.params.id;
+  
+      const advert = await Advert.findById(id);
+  
+      res.json({ result: advert })
+    } catch (error) {
+      next(error);
+    }
+  });
+
 module.exports = router;
