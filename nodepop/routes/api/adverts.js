@@ -66,6 +66,21 @@ router.get('/:id', async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  });
+});
 
 module.exports = router;
+
+// Update an ad   PUT /api/adverts/<_id> (body)
+router.put('/:id', async (req, res, next) => {
+    try {
+      const id = req.params.id;
+      const data = req.body;
+  
+      const updatedAd = await Advert.findByIdAndUpdate(id, data, { new: true });
+  
+      res.json({ result: updatedAd });
+  
+    } catch (error) {
+      next(error);
+    }
+});
