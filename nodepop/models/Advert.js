@@ -57,10 +57,12 @@ advertSchema.pre('validate', function(next) {
 
 
 // Used in API filters (adverts.js)
-advertSchema.statics.list = function(filter, skip, limit){
+advertSchema.statics.list = function(filter, skip, limit, sort, fields){
     const query = Advert.find(filter);
     query.skip(skip);
     query.limit(limit);
+    query.sort(sort);
+    query.select(fields);
     return query.exec();
 }
 

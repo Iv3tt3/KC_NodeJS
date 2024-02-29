@@ -37,12 +37,17 @@ router.get('/', async function(req, res, next) {
                 }
             }
         
-        // Pagination
-        // GET api/adverts?skip=2&limit=2
+        // Pagination GET api/adverts?skip=2&limit=2
             const skip = req.query.skip;
             const limit = req.query.limit;
 
-        const adverts = await Advert.list(filter, skip, limit);
+        // Order GET api/adverts?sort=price
+            const sort = req.query.sort;
+
+        // Select fields GET api/adverts?fields=tags
+            const fields = req.query.fields;
+
+        const adverts = await Advert.list(filter, skip, limit, sort, fields);
         res.json({results: adverts});
 
     } catch (error){
