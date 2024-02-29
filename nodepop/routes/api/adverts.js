@@ -32,12 +32,10 @@ router.get('/', async function(req, res, next) {
             }
 
             if (filterByTags) {
-                if (filterType === 'all'){
-                    filter.tags = { $all: filterByTags.split(' ') };
-                }
-                else if (filterType === 'in'){
-                    filter.tags = { $in: filterByTags.split(' ') };
-                }
+              filter.tags = { $all: filterByTags.split(' ') };
+              if (filterType === 'in'){
+                  filter.tags = { $in: filterByTags.split(' ') };
+              }
             }
 
             if (filterByPrice) {
