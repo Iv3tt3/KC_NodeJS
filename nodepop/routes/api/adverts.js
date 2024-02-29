@@ -18,7 +18,11 @@ router.get('/', async function(req, res, next) {
             const filterType = req.query.type;
             const filterByTags = req.query.tags;
 
-            const filter = {}
+            //GET 
+            // api/adverts?price=
+            const filterByPrice = req.query.price;
+
+            const filter = {};
 
             if (filterByName) {
                 filter.name = filterByName;
@@ -35,6 +39,11 @@ router.get('/', async function(req, res, next) {
                 else if (filterType === 'in'){
                     filter.tags = { $in: filterByTags.split(' ') };
                 }
+            }
+
+            if (filterByPrice) {
+                const [minPrice, maxPrice] = filterByPrice.split('-');
+                filter.price = { $gte: parseInt(minPrice), $lte: parseInt(maxPrice) };
             }
         
         // Pagination GET api/adverts?skip=2&limit=2
