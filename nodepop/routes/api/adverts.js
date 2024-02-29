@@ -5,8 +5,19 @@ const Advert = require('../../models/Advert');
 /* GET listing. */
 router.get('/', async function(req, res, next) {
     try {
-        const adverts = await Advert.find();
+
+        //Filters
+        const filterByName = req.query.name;
+
+        const filter = {}
+
+        if (filterByName) {
+            filter.name = filterByName
+        }
+
+        const adverts = await Advert.find(filter);
         res.json({results: adverts});
+
     } catch (error){
         next(error)
     }
