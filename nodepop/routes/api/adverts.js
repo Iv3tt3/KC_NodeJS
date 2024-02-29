@@ -68,8 +68,6 @@ router.get('/:id', async (req, res, next) => {
     }
 });
 
-module.exports = router;
-
 // Update an ad   PUT /api/adverts/<_id> (body)
 router.put('/:id', async (req, res, next) => {
     try {
@@ -101,4 +99,25 @@ router.post('/', async (req, res, next) => {
     } catch (error) {
       next(error);
     }
-  });
+});
+
+
+// Delete by id   DELETE /api/agentes/<_id>
+router.delete('/:id', async (req, res, next) => {
+    try {
+      const id = req.params.id;
+
+      const advert = await Advert.findById(id);
+  
+      const deleted = await Advert.deleteOne({ _id: id });
+      deleted.deletedAdvert = advert;
+
+      //Return JSON with data of deleted advert
+      res.json({deleted});
+    } catch (error) {
+      next(error);
+    }
+})
+
+
+module.exports = router;
