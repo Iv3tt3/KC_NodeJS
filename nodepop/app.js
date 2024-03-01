@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const basicAuth = require('./lib/basicAuth')
 
 // Execute module to connect db
 require('./lib/connectMongoose')
@@ -21,7 +22,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // API routes
-app.use('/api/adverts', require('./routes/api/adverts'));
+// Includes basicAuth to allow only authorized user to use API
+app.use('/api/adverts', basicAuth, require('./routes/api/adverts'));
 
 // Website routes
 app.use('/', require('./routes/index'));
