@@ -5,7 +5,7 @@ const advertSchema = mongoose.Schema({
     name: { 
         type: String, 
         required: true, 
-        min: [] 
+        minlength: [1, 'Name must contain at least 1 character'] 
         },
 
     sell: {

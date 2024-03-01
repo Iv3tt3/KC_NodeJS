@@ -1,9 +1,22 @@
 var express = require('express');
 var router = express.Router();
 const Advert = require('../models/Advert');
+const { query, validationResult } = require('express-validator') 
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/', 
+  //Validations for queries with express-validator
+    [ 
+    query('sell').optional().isBoolean().withMessage('must be false or true'),
+    query('price').optional().isNumeric().withMessage('must be a number'),
+    query('skip').optional().isNumeric().withMessage('must be a number'),
+    query('limit').optional().isNumeric().withMessage('must be a number'),
+    ], 
+  (req, res, next) => {
+    validationResult(req).throw(); 
+    next();
+  },
+  async function(req, res, next) {
   try{
     //Filter 
       //GET /?name=Sofa

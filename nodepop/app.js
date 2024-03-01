@@ -35,11 +35,11 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
 
-  //validation errors
+  // handle validation errors of queries - express-validator middlewares
   if (err.array) {
     const errInfo = err.array({ })[0];
     console.log(errInfo);
-    err.message = `Not valid - ${errInfo.type} ${errInfo.path} in ${errInfo.location} ${errInfo.msg}`;
+    err.message = `VALUE ${errInfo.value} NOT VALID - The ${errInfo.type} [${errInfo.path}] in ${errInfo.location} ${errInfo.msg}`;
     err.status = 422;
   }
 
